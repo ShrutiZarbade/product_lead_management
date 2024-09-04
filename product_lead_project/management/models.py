@@ -14,5 +14,8 @@ class LeadManagement(models.Model):
     name = models.CharField(max_length=255)
     email = models.EmailField(max_length=255)
     phone_number = models.CharField(max_length=13)
-    interested_products = models.ManyToManyField(ProductManagement, related_name='leads')
     created_at = models.DateTimeField(auto_now_add=True)
+
+class ProductLead(models.Model):
+    product = models.ForeignKey(ProductManagement, on_delete=models.CASCADE)
+    lead = models.ForeignKey(LeadManagement, on_delete=models.CASCADE)
