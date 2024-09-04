@@ -11,6 +11,3 @@ class LeadSerializer(serializers.ModelSerializer):
         model = LeadManagement
         fields = ['id', 'name', 'email', 'phone_number', 'created_at']
 
-class ProductLeadCountSerializer(serializers.ModelSerializer):
-    product_name = serializers.CharField()
-    lead_count = serializers.IntegerField()

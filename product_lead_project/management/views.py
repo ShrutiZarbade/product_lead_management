@@ -77,3 +77,21 @@ class GetBottomMostLead(ModelViewSet):
             }
             data.append(dict_data)
         return Response(data, status=status.HTTP_200_OK)
+
+class GetNumberProductByLead(ModelViewSet):
+
+    def list(self,request):
+        inquiries_per_lead = (
+            ProductLead.objects
+            .values('lead_id')  # Group by lead_id
+            .annotate(num_products_inquired=Count('product_id', distinct=True))  # Count distinct product_id
+        )
+        data = []
+        for lead_data in inquiries_per_lead:
+            dict_data = {
+                "lead_id": lead_data.get("lead_id"),
+                "lead_name":LeadManagement.objects.get(id = lead_data.get("lead_id")).name,
+                "num_products_inquired" : lead_data.get("num_products_inquired")
+            }
+            data.append(dict_data)
+        return Response(data, status=status.HTTP_200_OK)
