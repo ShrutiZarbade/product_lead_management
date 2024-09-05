@@ -1,7 +1,9 @@
 # Create your models here.
 
-from django.db import models
 from decimal import Decimal
+
+from django.db import models
+
 
 class ProductManagement(models.Model):
     name = models.CharField(max_length=255)  # String

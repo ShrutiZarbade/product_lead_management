@@ -15,7 +15,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import include, path
+
+from django.conf.urls import url
+from rest_framework_swagger.views import get_swagger_view
+prime@123
+prime
+schema_view = get_swagger_view(title='Pastebin API')
+
+urlpatterns = [
+    url(r'^$', schema_view)
+]
 
 urlpatterns = [
     path('admin/', admin.site.urls),

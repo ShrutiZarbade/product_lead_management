@@ -1,11 +1,12 @@
-from rest_framework.viewsets import ModelViewSet
-from .models import ProductManagement,LeadManagement,ProductLead
-from .serializers import ProductSerializer,LeadSerializer
-from rest_framework import generics
-from rest_framework.response import Response
 from django.db.models import Count
-from rest_framework import status
 from django.utils.dateparse import parse_datetime
+from rest_framework import generics, status
+from rest_framework.response import Response
+from rest_framework.viewsets import ModelViewSet
+
+from .models import LeadManagement, ProductLead, ProductManagement
+from .serializers import LeadSerializer, ProductSerializer
+
 
 class ProductViewSet(ModelViewSet):
     queryset = ProductManagement.objects.all()

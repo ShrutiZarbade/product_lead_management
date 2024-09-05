@@ -1,5 +1,7 @@
 from rest_framework import serializers
-from .models import ProductManagement,LeadManagement
+
+from .models import LeadManagement, ProductManagement
+
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
