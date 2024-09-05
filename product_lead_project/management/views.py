@@ -22,10 +22,12 @@ class LeadViewSet(ModelViewSet):
         leadmanage_data = LeadManagement.objects.create(name=lead_data.get("name"),
                             email = lead_data.get("email"),phone_number= lead_data.get("phone_number"))
         leadmanage_data.save()
-        product_id = ProductManagement.objects.get(name = lead_data.get("product_name")).id
-        
-        product_lead = ProductLead.objects.create(product_id=product_id,lead_id=leadmanage_data.id)
-        product_lead.save()
+        try:
+            product_id = ProductManagement.objects.get(name = lead_data.get("product_name")).id
+            product_lead = ProductLead.objects.create(product_id=product_id,lead_id=leadmanage_data.id)
+            product_lead.save()
+        except:
+            return Response({"error":"This product is not avaialble"}, status=status.HTTP_404_NOT_FOUND)
 
         return Response({"success":"Lead has generated successfully"}, status=status.HTTP_201_CREATED)
 

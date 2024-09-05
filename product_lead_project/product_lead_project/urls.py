@@ -17,10 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from django.conf.urls import url
+from django.urls import re_path as url
 from rest_framework_swagger.views import get_swagger_view
-prime@123
-prime
+
 schema_view = get_swagger_view(title='Pastebin API')
 
 urlpatterns = [
